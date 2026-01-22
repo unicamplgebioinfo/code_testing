@@ -15,9 +15,8 @@
     <main>
       <h1>Informe um número</h1>
       <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-        <label for="v1">Salário (R$):</label>
-        <input type="number" id="idv1" name="v1" value="<?=$valor1?>" step="0.01" required>
-        <p>Considerando o salário mínimo de <b><?=$minimoFormatado?></b></p>
+        <label for="v1">Número:</label>
+        <input type="number" id="idv1" name="v1" value="<?=$valor1?>" required>
         <input type="submit" value="Calcular Raízes">
       </form>
     </main>
@@ -25,10 +24,12 @@
     <section id="resultado">
       <h2>Resultado Final</h2>
       <?php
-        $raiz_quadrada = $valor1 ** (1/2);
-        $raiz_cubica = $valor1 ** (1/3);
+        $raiz_quadrada = number_format($valor1 ** (1/2), 3, "," , ".");
+        $raiz_cubica = number_format($valor1 ** (1/3), 3, "," , ".");
         
-        echo "Analisando o <b>número $valor1</b>, temos:"
+        echo "<p>Analisando o <b>número $valor1</b>, temos:</p>";
+        echo "<ul><li>A sua raiz quadrada é <b>$raiz_quadrada</b></li>";
+        echo "<li>A sua raiz cúbica é <b>$raiz_cubica</b></li></ul></br>";
       ?>
     </section>  
   </body>
