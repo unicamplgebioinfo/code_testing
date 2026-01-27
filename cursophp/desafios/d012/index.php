@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Desafio 008</title>
+    <title>Desafio 012</title>
   </head>
   <body>
     <?php 
@@ -24,17 +24,24 @@
     <section id="resultado">
       <h2>Totalizando tudo</h2>
       <?php
-        $restoDias = $valor1 % (60*60*24*7);
-        $restoHoras = $restoDias % (60*60*24);
-        $restoMinutos = $restoHoras % (60*60);
-        $restoSegundos = $restoMinutos % 60;
+        $segundosSemana = 60*60*24*7;
+        $resto = $valor1;
+
+        $semanas = intdiv($resto, $segundosSemana);
+        $resto %= $segundosSemana;
+        $dias = intdiv($resto, $segundosSemana/7);
+        $resto %= $segundosSemana/7;
+        $horas = intdiv($resto, 60*60);
+        $resto %= 60*60;
+        $minutos = intdiv($resto, 60);
+        $segundos = $resto % 60;
 
         echo "<p>Analisando o valor que você digitou, <b>$valor1 segundos</b> equivalem a um total de:</p>";
-        echo "<ul><li>" . intdiv($valor1, 60*60*24*7) . " semanas</li>";
-        echo "<li>" . intdiv($restoDias, 60*60*24) . " dias</li>";
-        echo "<li>" . intdiv($restoHoras, 60*60) . " horas</li>";
-        echo "<li>" . intdiv($restoMinutos, 60) . " minutos</li>";
-        echo "<li>" . $restoSegundos . " segundos</li></ul></br>";
+        echo "<ul><li> $semanas semanas</li>";
+        echo "<li> $dias dias</li>";
+        echo "<li> $horas horas</li>";
+        echo "<li> $minutos minutos</li>";
+        echo "<li> $segundos segundos</li></ul></br>";
       ?>
     </section>  
   </body>

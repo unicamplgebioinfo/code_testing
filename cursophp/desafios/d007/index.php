@@ -32,7 +32,7 @@
       <h2>Resultado Final</h2>
       <?php
         $qtd_minimos = intdiv($valor1, $minimo);
-        $resto = $valor1 - ($qtd_minimos * $minimo);
+        $resto = $valor1 % $minimo;
         
         $valorFormatado = numfmt_format_currency($padrao, $valor1, "BRL");
         $restoFormatado = numfmt_format_currency($padrao, $resto, "BRL");

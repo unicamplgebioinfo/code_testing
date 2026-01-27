@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Desafio 008</title>
+    <style>
+      img.nota {
+        height: 50px;
+        margin: 5px;
+      }
+    </style>
+    <title>Desafio 013</title>
   </head>
   <body>
     <?php 
@@ -16,16 +22,21 @@
       // Formata os numeros para a respectiva moeda
       $real = numfmt_format_currency($padrao, $valor1, "BRL");
       
-      $resto100 = $valor1 % 100;
-      $resto50 = $resto100 % 50;
-      $resto10 = $resto50 % 10;
-      $resto5 = $resto10 % 5;
+      $resto = $valor1;
+      $valor100 = intdiv($resto, 100);
+      $resto %= 100;
+      $valor50 = intdiv($resto, 50);
+      $resto %= 50;
+      $valor10 = intdiv($resto, 10);
+      $resto %= 10;
+      $valor5 = intdiv($resto, 5);
     ?>
     <main>
       <h1>Caixa Eletrônico</h1>
       <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-        <label for="v1">Qual valor você deseja sacar? (R$)</label>
-        <input type="number" id="idv1" name="v1" value="<?=$valor1?>" required>
+        <label for="v1">Qual valor você deseja sacar? (R$)<sup>*</sup></label>
+        <input type="number" id="v1" name="v1" value="<?=$valor1?>" step="5" required>
+        <p style="font-size: 0.6em"><sup>*</sup>Notas disponíveis: R$100, R$50, R$10 e R$5</p>
         <input type="submit" value="Sacar">
       </form>
     </main>
@@ -33,12 +44,12 @@
     <section id="resultado">
       <h2>Saque de <?=$real?></h2>
       <p>O caixa eletrônico vai te entregar as seguintes notas:</p>
-      <?php
-        echo "<ul><li>" . intdiv($valor1, 100) . "x Notas de R$ 100,00</li>";
-        echo "<li>" . intdiv($resto100, 50) . "x Notas de R$ 50,00</li>";
-        echo "<li>" . intdiv($resto50, 10) . "x Notas de R$ 10,00</li>";
-        echo "<li>" . intdiv($resto10, 5) . "x Notas de R$ 5,00</li></ul></br>";
-      ?>
+      <ul>
+        <li><img src="images/100-reais.jpg" alt="Nota de 100" class="nota"> x<?=$valor100?></li>
+        <li><img src="images/50-reais.jpg" alt="Nota de 50" class="nota"> x<?=$valor50?></li>
+        <li><img src="images/10-reais.jpg" alt="Nota de 10" class="nota"> x<?=$valor10?></li>
+        <li><img src="images/5-reais.jpg" alt="Nota de 5" class="nota"> x<?=$valor5?></li>
+      </ul>
     </section>  
   </body>
 </html>
