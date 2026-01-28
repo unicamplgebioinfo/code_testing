@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEROPORTO</title>
+    <style>
+      body {
+        font: normal 18pt Arial;
+      }
+      input {
+        font: normal 18pt Arial;
+        width: 100px;
+      }
+      div {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Entrada no País</h1>
+    Qual seu país: <input type="text" name="txt" id="txt">
+    <input type="button" value="Verificar" onclick="verificar()">
+    <div id="res">Resultado</div>
+    <script>
+      function verificar() {
+        var pais = window.document.getElementById('txt').value
+        var res = window.document.getElementById('res')
+
+        res.innerHTML = `<p>Vivendo em <strong>${pais}</strong>!</p>`
+        if(pais.toLowerCase() != 'brasil') {
+          res.innerHTML += '<p>Você é Estrangeiro!</p>'
+        } else {
+          res.innerHTML += '<p>Você é Brasileiro!</p>'
+        }
+      }
+    </script>
+  </body>
+</html>
